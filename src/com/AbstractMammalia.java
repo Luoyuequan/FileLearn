@@ -8,8 +8,9 @@ public abstract class AbstractMammalia {
     long deathDateTime;
     int idCard;
     int sex;
-    AbstractMammalia parent;
-    AbstractMammalia mother;
+    int health = 100;
+    AbstractMammalia parent = null;
+    AbstractMammalia mother = null;
 
     /**
      * @param birthDateTime 出生时间
