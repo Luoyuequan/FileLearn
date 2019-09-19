@@ -65,7 +65,7 @@ public class Test {
      * @param oldPath 待复制的文件路径 绝对或相对路径
      * @param newPath 新文件路径 绝对或相对路径
      */
-    public boolean copyFile(String oldPath, String newPath) {
+    private boolean copyFile(String oldPath, String newPath) {
         FileController readFileController = new FileController(oldPath);
         FileController writeFileController = new FileController(newPath);
         do {

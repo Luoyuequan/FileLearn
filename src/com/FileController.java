@@ -18,7 +18,7 @@ public class FileController {
     /**
      * 构造函数
      */
-    public FileController(String pathName) {
+    FileController(String pathName) {
         file = new File(pathName);
         fileExists = file.exists();
         fileName = file.getName();
@@ -53,7 +53,7 @@ public class FileController {
     /**
      * 设置文件指针
      */
-    public void setFilePointer(long filePointer) {
+    void setFilePointer(long filePointer) {
         try {
             fileOutput = fileOutput == null ? new RandomAccessFile(file, "rw") : fileOutput;
             fileOutput.seek(filePointer);
@@ -65,14 +65,14 @@ public class FileController {
     /**
      * 获取文件读取的字节数
      */
-    public int getReadLen() {
+    int getReadLen() {
         return readLen;
     }
 
     /**
      * 设置文件读取的字节数
      */
-    public void setReadLen(int readLen) {
+    void setReadLen(int readLen) {
         this.readLen = readLen;
     }
 
@@ -95,21 +95,21 @@ public class FileController {
     /**
      * 获取文件大小
      */
-    public long getFileByte() {
+    long getFileByte() {
         return file.length();
     }
 
     /**
      * 写入 缓冲区
      */
-    public void setBuffer(byte[] buffer) {
+    void setBuffer(byte[] buffer) {
         this.buffer = buffer;
     }
 
     /**
      * 获取缓冲区 内容
      */
-    public byte[] getBuffer() {
+    byte[] getBuffer() {
         return buffer;
     }
 
@@ -141,7 +141,7 @@ public class FileController {
     /**
      * 写入文件
      */
-    public boolean writeFile() {
+    boolean writeFile() {
         try {
             fileOutput = fileOutput == null ? new RandomAccessFile(file, "rw") : fileOutput;
             fileOutput.write(getBuffer(), 0, getReadLen());
@@ -155,7 +155,7 @@ public class FileController {
     /**
      * 读取文件
      */
-    public void readFile() {
+    void readFile() {
         try {
             fileOutput = fileOutput == null ? new RandomAccessFile(file, "rw") : fileOutput;
             setReadLen(fileOutput.read(getBuffer()));
@@ -167,7 +167,7 @@ public class FileController {
     /**
      * 关闭文件流
      */
-    public void closeFile() {
+    void closeFile() {
         try {
             if (fileOutput != null) {
                 fileOutput.close();
@@ -176,4 +176,6 @@ public class FileController {
             e.printStackTrace();
         }
     }
+
+
 }
