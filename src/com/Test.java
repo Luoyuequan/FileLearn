@@ -20,9 +20,11 @@ public class Test {
 ////        System.out.println(p3);
 //        File f = p3.toFile(); // 转换为File对象
 ////        fileList(f, 0);
-//        Test test = new Test();
+        Test test = new Test();
         long start = System.currentTimeMillis();
-//        test.readOfThreadMode("test.png");
+//        多线程读取
+        test.readOfThreadMode("test.png");
+//        单线程读取
         readAsString(new FileInputStream("test.png"));
         long end = System.currentTimeMillis();
         System.out.println(end - start);
@@ -46,7 +48,7 @@ public class Test {
         }
     }
 
-    public static String readAsString(InputStream input) throws IOException {
+    private static String readAsString(InputStream input) throws IOException {
         int n;
         StringBuilder sb = new StringBuilder();
         while ((n = input.read()) != -1) {
@@ -118,6 +120,11 @@ public class Test {
         return readFileController.getFileByte() == writeFileController.getFileByte();
     }
 
+    /**
+     * 多线程读取文件
+     *
+     * @param filePath
+     */
     private void readOfThreadMode(String filePath) {
         int threadNumbers = 4;
         ReadOfThreads[] threads = new ReadOfThreads[threadNumbers];
