@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/**
+ * @author Administrator
+ */
 public class FileController {
     private File file;
     private boolean fileExists;
@@ -11,7 +14,7 @@ public class FileController {
     private String suffix;
     private String fileName;
     private RandomAccessFile fileOutput = null;
-    private final int BUFFER_SIZE = 1024;//1kb
+    private final int BUFFER_SIZE = 1024;
     private byte[] buffer = new byte[BUFFER_SIZE];
     private int readLen;
 
@@ -40,7 +43,7 @@ public class FileController {
     /**
      * 获取文件指针
      */
-    public long getFilePointer() {
+    long getFilePointer() {
         try {
             fileOutput = fileOutput == null ? new RandomAccessFile(file, "rw") : fileOutput;
             return fileOutput.getFilePointer();
@@ -153,12 +156,26 @@ public class FileController {
     }
 
     /**
-     * 读取文件
+     * 读取文件，读取字节长度采用缓冲区长度
      */
     void readFile() {
         try {
             fileOutput = fileOutput == null ? new RandomAccessFile(file, "rw") : fileOutput;
             setReadLen(fileOutput.read(getBuffer()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 读取文件，给予指定字节长度
+     *
+     * @param readLen 规定读取字节长度
+     */
+    void readFile(int readLen) {
+        try {
+            fileOutput = fileOutput == null ? new RandomAccessFile(file, "rw") : fileOutput;
+            setReadLen(fileOutput.read(getBuffer(), 0, readLen));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -175,5 +192,12 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * @return 缓冲区字节长度
+     */
+    public int getBUFFER_SIZE() {
+        return BUFFER_SIZE;
     }
 }
